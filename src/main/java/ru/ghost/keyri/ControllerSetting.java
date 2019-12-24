@@ -1,10 +1,9 @@
 package ru.ghost.keyri;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import java.nio.channels.FileChannel;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -50,10 +49,18 @@ public class ControllerSetting {
 
         btn_save.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                SaveSetting saveSetting = new SaveSetting();
-                saveSetting.setJsonFileName(leb_file.getText());
+                Setting saveSetting = new Setting();
+                saveSetting.setPropFileName(leb_file.getText());
                 saveSetting.setPortCOM(txt_port.getText());
                 saveSetting.setSpeedBOD(txt_bod.getText());
+
+                try {
+                    saveSetting.saveSettings();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Stage stage = (Stage) btn_save.getScene().getWindow();
+                stage.close();
             }
         });
 

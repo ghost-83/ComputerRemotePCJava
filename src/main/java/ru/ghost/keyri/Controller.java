@@ -2,6 +2,7 @@ package ru.ghost.keyri;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -40,18 +41,32 @@ public class Controller {
     void initialize() {
         btn_setting.setOnAction(new EventHandler<ActionEvent>() {
             public void handle (ActionEvent event) {
+                btnSetting();
+            }
+        });
+        btn_start.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Properties setting = null;
                 try {
-                    btnSetting();
+                    setting = new Setting().openSettings();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                System.out.println(setting);
             }
         });
     }
 
-    void btnSetting() throws IOException {
+    void btnSetting() {
         Stage setWindow = new Stage();
-        Parent setWin = FXMLLoader.load(getClass().getResource("/fxml/setting.fxml"));
+        Parent setWin = null;
+        try {
+            setWin = FXMLLoader.load(getClass().getResource("/fxml/setting.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         setWindow.setTitle("Setting");
         setWindow.setScene(new Scene(setWin, 300, 120));
         setWindow.setResizable(false);//Отключаем кнопку "развернуть на весь экран"
