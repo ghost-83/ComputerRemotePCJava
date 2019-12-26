@@ -2,25 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4851ac6a-172d-48b1-883b-15596efe8343" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/key.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/setting.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/ghost/keyri/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ghost/keyri/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/ghost/keyri/ControllerSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ghost/keyri/ControllerSetting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/ghost/keyri/Gonfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/ghost/keyri/SaveSetting.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/ghost/keyri/Setting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ghost/keyri/Setting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/setting.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/setting.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/Controller$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/Controller$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/Controller$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/ControllerSetting$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/ControllerSetting$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/ControllerSetting$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/ControllerSetting$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/ControllerSetting.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/ControllerSetting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/Gonfig.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/SaveSetting.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/Setting.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/ghost/keyri/Setting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/setting.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/setting.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,10 +115,11 @@
     </state>
     <state x="392" y="92" key="#Project_Structure/0.0.1600.870@0.0.1600.870" timestamp="1577182268254" />
     <state x="470" y="110" key="#Project_Structure/0.0.1920.1040/1920.0.1280.984@0.0.1920.1040" timestamp="1577208009357" />
-    <state x="605" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1577183938137">
-      <screen x="0" y="0" width="1600" height="870" />
+    <state x="726" y="141" key="#com.intellij.ide.util.MemberChooser" timestamp="1577366525593">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="605" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1600.870@0.0.1600.870" timestamp="1577183938137" />
+    <state x="726" y="141" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1280.984@0.0.1920.1040" timestamp="1577366525593" />
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1577206564894">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -133,33 +128,33 @@
       <screen x="0" y="0" width="1600" height="870" />
     </state>
     <state x="580" y="189" key="FileChooserDialogImpl/0.0.1600.870@0.0.1600.870" timestamp="1576909516252" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1577208105675">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1577381269829">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1556" height="221" key="GridCell.Tab.0.bottom/0.0.1600.870@0.0.1600.870" timestamp="1577186422454" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1280.984@0.0.1920.1040" timestamp="1577208105675" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1577208105675">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1280.984@0.0.1920.1040" timestamp="1577381269829" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1577381269829">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1556" height="221" key="GridCell.Tab.0.center/0.0.1600.870@0.0.1600.870" timestamp="1577186422454" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1280.984@0.0.1920.1040" timestamp="1577208105675" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1577208105675">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1280.984@0.0.1920.1040" timestamp="1577381269829" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1577381269828">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1556" height="221" key="GridCell.Tab.0.left/0.0.1600.870@0.0.1600.870" timestamp="1577186422454" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1280.984@0.0.1920.1040" timestamp="1577208105675" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1577208105675">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1280.984@0.0.1920.1040" timestamp="1577381269828" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1577381269829">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1556" height="221" key="GridCell.Tab.0.right/0.0.1600.870@0.0.1600.870" timestamp="1577186422454" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1280.984@0.0.1920.1040" timestamp="1577208105675" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1280.984@0.0.1920.1040" timestamp="1577381269829" />
     <state x="182" y="136" key="new project wizard" timestamp="1576910884213">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
     <state x="182" y="136" key="new project wizard/0.0.1600.870@0.0.1600.870" timestamp="1576910884213" />
-    <state x="666" y="138" key="refactoring.ChangeSignatureDialog" timestamp="1577204752862">
+    <state x="666" y="138" key="refactoring.ChangeSignatureDialog" timestamp="1577375658254">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="666" y="138" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1280.984@0.0.1920.1040" timestamp="1577204752862" />
+    <state x="666" y="138" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1280.984@0.0.1920.1040" timestamp="1577375658254" />
   </component>
 </project>

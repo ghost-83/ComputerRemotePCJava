@@ -1,10 +1,16 @@
 package ru.ghost.keyri;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+import com.fazecast.jSerialComm.SerialPort;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,6 +24,8 @@ import javafx.stage.Stage;
 import ru.ghost.keyri.Setting;
 
 public class Controller {
+
+    public static boolean status;
 
     @FXML
     private ResourceBundle resources;
@@ -47,15 +55,15 @@ public class Controller {
         btn_start.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Properties setting = null;
-                try {
-                    setting = new Setting().openSettings();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                System.out.println(setting);
+                leb_key.setText("Start");
+                status = true;
+                MainIR startIR = new MainIR();
+                startIR.start();
             }
+        });
+        btn_stop.setOnAction(event -> {
+            status = false;
+            leb_key.setText("Stop");
         });
     }
 
@@ -74,4 +82,55 @@ public class Controller {
         setWindow.show();
     }
 
+    public class MainIR extends Thread {
+        @Override
+        public void run() {
+            Properties settingArray = null;
+            Robot robotKey = null;
+            BufferedInputStream inputStream = null;
+            byte[] buffer = new byte[1024];
+            String key = "";
+
+            try {
+                robotKey = new Robot();
+            } catch (AWTException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                settingArray = new Setting().openSettings();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            SerialPort serialPort = SerialPort.getCommPort(settingArray.getProperty("COM"));
+            serialPort.setBaudRate(Integer.parseInt(settingArray.getProperty("BOD")));
+
+
+            if (serialPort.openPort()){
+
+                while (Controller.status) {
+
+                    if(serialPort.bytesAvailable() != 0){
+                        serialPort.readBytes(buffer, 1024);
+
+                        try {
+                            key = new String(buffer, "UTF-8");
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+
+                        System.out.println(key);
+
+                        robotKey.keyPress(KeyEvent.VK_SPACE);
+                    }
+                    
+
+                    robotKey.delay(100);
+                }
+            }
+            else {
+                System.out.println("Что то пошло не так.");
+            }
+        }
+    }
 }
