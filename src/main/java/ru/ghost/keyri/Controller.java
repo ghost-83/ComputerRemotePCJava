@@ -1,18 +1,13 @@
 package ru.ghost.keyri;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.io.BufferedInputStream;
+import java.io.CharArrayReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Properties;
-import java.util.ResourceBundle;
-
 import com.fazecast.jSerialComm.SerialPort;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,17 +16,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import ru.ghost.keyri.Setting;
 
 public class Controller {
 
-    public static boolean status;
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
+    public static String key = "";
+    private  MainIR startIR;
 
     @FXML
     private Button btn_start;
@@ -47,23 +36,15 @@ public class Controller {
 
     @FXML
     void initialize() {
-        btn_setting.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle (ActionEvent event) {
-                btnSetting();
-            }
-        });
-        btn_start.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                leb_key.setText("Start");
-                status = true;
-                MainIR startIR = new MainIR();
-                startIR.start();
-            }
+        btn_setting.setOnAction(event -> btnSetting());
+        btn_start.setOnAction(event -> {
+            leb_key.setText("Start");
+            startIR = new MainIR();
+            startIR.start();
+
         });
         btn_stop.setOnAction(event -> {
-            status = false;
-            leb_key.setText("Stop");
+            startIR.shutdown();
         });
     }
 
@@ -83,19 +64,13 @@ public class Controller {
     }
 
     public class MainIR extends Thread {
+        Properties settingArray = null;
+        ArrayKey arrayKey = new ArrayKey();
+        byte[] buffer = new byte[1024];
+        private volatile boolean status;
+
         @Override
         public void run() {
-            Properties settingArray = null;
-            Robot robotKey = null;
-            BufferedInputStream inputStream = null;
-            byte[] buffer = new byte[1024];
-            String key = "";
-
-            try {
-                robotKey = new Robot();
-            } catch (AWTException e) {
-                e.printStackTrace();
-            }
 
             try {
                 settingArray = new Setting().openSettings();
@@ -104,33 +79,56 @@ public class Controller {
             }
             SerialPort serialPort = SerialPort.getCommPort(settingArray.getProperty("COM"));
             serialPort.setBaudRate(Integer.parseInt(settingArray.getProperty("BOD")));
-
+            status = true;
 
             if (serialPort.openPort()){
 
-                while (Controller.status) {
+                while (status) {
 
                     if(serialPort.bytesAvailable() != 0){
-                        serialPort.readBytes(buffer, 1024);
+                        serialPort.readBytes(buffer, 1024, 0);
 
-                        try {
-                            key = new String(buffer, "UTF-8");
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        }
+                        key = new String(buffer).replaceAll("[^0-9]*", "");
+
+                        key = new String(buffer);
+
+                        Platform.runLater(new Runnable(){
+
+                            @Override
+                            public void run() {
+                                leb_key.setText(key);
+                            }
+                        });
 
                         System.out.println(key);
-
-                        robotKey.keyPress(KeyEvent.VK_SPACE);
+                        System.out.println(settingArray);
+                        System.out.println(key.matches("\\d"));
+                        arrayKey.setArrayKey(settingArray.getProperty(key));
                     }
-                    
 
-                    robotKey.delay(100);
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
+
+                serialPort.closePort();
+                Platform.runLater(new Runnable(){
+
+                    @Override
+                    public void run() {
+                        leb_key.setText("Stop");
+                    }
+                });
             }
             else {
                 System.out.println("Что то пошло не так.");
             }
+
+        }
+        public void shutdown() {
+            status = false;
         }
     }
 }
