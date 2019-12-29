@@ -1,10 +1,6 @@
 package ru.ghost.keyri;
 
-import java.io.CharArrayReader;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Properties;
 import com.fazecast.jSerialComm.SerialPort;
 import javafx.application.Platform;
@@ -12,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
@@ -42,9 +39,32 @@ public class Controller {
             startIR = new MainIR();
             startIR.start();
 
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (startIR.isAlive() ){
+                btn_setting.setDisable(true);
+                btn_start.setDisable(true);
+                btn_stop.setDisable(false);
+            }else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+                alert.setTitle("Information");
+                alert.setHeaderText(null);
+                alert.setContentText("Could not open port, check settings!");
+
+                alert.showAndWait();
+            }
+
+
         });
         btn_stop.setOnAction(event -> {
             startIR.shutdown();
+            btn_start.setDisable(false);
+            btn_setting.setDisable(false);
+            btn_stop.setDisable(true);
         });
     }
 
@@ -67,7 +87,7 @@ public class Controller {
         Properties settingArray = null;
         ArrayKey arrayKey = new ArrayKey();
         byte[] buffer = new byte[1024];
-        private volatile boolean status;
+        private volatile boolean status = true;
 
         @Override
         public void run() {
@@ -79,7 +99,7 @@ public class Controller {
             }
             SerialPort serialPort = SerialPort.getCommPort(settingArray.getProperty("COM"));
             serialPort.setBaudRate(Integer.parseInt(settingArray.getProperty("BOD")));
-            status = true;
+
 
             if (serialPort.openPort()){
 
@@ -88,9 +108,7 @@ public class Controller {
                     if(serialPort.bytesAvailable() != 0){
                         serialPort.readBytes(buffer, 1024, 0);
 
-                        key = new String(buffer).replaceAll("[^0-9]*", "");
-
-                        key = new String(buffer);
+                        key = (new String(buffer)).replaceAll("[^0-9]+", "");
 
                         Platform.runLater(new Runnable(){
 
@@ -100,14 +118,11 @@ public class Controller {
                             }
                         });
 
-                        System.out.println(key);
-                        System.out.println(settingArray);
-                        System.out.println(key.matches("\\d"));
                         arrayKey.setArrayKey(settingArray.getProperty(key));
                     }
 
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(200);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -122,10 +137,6 @@ public class Controller {
                     }
                 });
             }
-            else {
-                System.out.println("Что то пошло не так.");
-            }
-
         }
         public void shutdown() {
             status = false;

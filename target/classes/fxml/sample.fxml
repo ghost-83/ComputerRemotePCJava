@@ -9,8 +9,8 @@
 <AnchorPane maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.ghost.keyri.Controller">
    <children>
       <Button fx:id="btn_start" layoutX="14.0" layoutY="66.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="129.0" text="Start" />
-      <Button fx:id="btn_stop" layoutX="157.0" layoutY="66.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="129.0" text="Stop" />
-      <Label fx:id="leb_key" layoutX="20.0" layoutY="14.0" prefHeight="40.0" prefWidth="129.0" text="0" />
+      <Button fx:id="btn_stop" disable="true" layoutX="157.0" layoutY="66.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="129.0" text="Stop" />
+      <Label fx:id="leb_key" layoutX="20.0" layoutY="14.0" prefHeight="40.0" prefWidth="129.0" text="Hello!" />
       <Button fx:id="btn_setting" layoutX="239.0" layoutY="13.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0">
          <graphic>
             <ImageView accessibleRole="BUTTON" fitHeight="35.0" fitWidth="31.0">
